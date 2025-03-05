@@ -10,27 +10,40 @@ permissions:
   contents: read
   pull-requests: write
   checks: write
+  statuses: write
 
 jobs:
-  coverage:
+  build:
     runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [22.x]
     
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Ensures full git history for coverage
     
-    - name: Use Node.js
+    - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
-        node-version: 22.x
+        node-version: ${{ matrix.node-version }}
         cache: 'npm'
     
     - name: Install dependencies
       run: npm ci
     
     - name: Run tests with coverage
-      run: npm run test:coverage
+      run: npm run test:coverage  # Ensure this script generates lcov report
     
-    - name: Coverage Report
-      uses: tobias-z/jest-coverage-comment-action@v1
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
       with:
-        coverage-path: ./coverage/coverage-summary.json
+        files: ./coverage/lcov.info  # Path to your coverage report
+        flags: unittests  # Optional: add flags to differentiate test types
+        name: codecov-umbrella  # Optional: meaningful name for the upload
+        fail_ci_if_error: true  # Optionally fail the workflow if upload fails
+        verbose: true  # Optional: provide more detailed logs
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
