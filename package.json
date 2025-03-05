@@ -12,6 +12,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "ci:test": "cross-env CI=true react-scripts test --coverage --coverageReporters=lcov",
+    "test:coverage": "react-scripts test --coverage --coverageReporters=lcov",
     "eject": "react-scripts eject",
     "cy:open": "cypress open",
     "cy:run": "cypress run"
