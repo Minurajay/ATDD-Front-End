@@ -1,20 +1,32 @@
-import { useState } from 'react';
-export default function Add() {
-    const[data, setData] = useState({
-        add_todo: ''
-    });
+import React from 'react';
 
-    const onChange = (evt) => {
-        const key = evt.target.name;
-        const value = evt.target.value;
-        setData(oldData => ({...oldData, [key]: value}));
-    };
-    return(
-        <input 
-            data-testid="todo-input" 
-            value={data.add_todo} 
-            onChange={(evt) => setData(oldData => ({...oldData, [evt.target.name]: evt.target.value}))}  
-            name="add_todo"  
-            />
-    );
+export default function Add({ value, onChange, onAdd }) {
+  const handleChange = (evt) => {
+    onChange(evt.target.value);
+  };
+
+  const handleKeyPress = (evt) => {
+    if (evt.key === 'Enter') {
+      onAdd();
+    }
+  };
+
+  return (
+    <div>
+      <input 
+        data-testid="todo-input" 
+        value={value} 
+        onChange={handleChange}
+        onKeyPress={handleKeyPress}
+        name="add_todo"  
+        placeholder="Enter a new todo"
+      />
+      <button 
+        data-testid="add-todo-button"
+        onClick={onAdd}
+      >
+        Add Todo
+      </button>
+    </div>
+  );
 }
