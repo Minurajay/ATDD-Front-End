@@ -1,46 +1,64 @@
-# Todo app
+# Todo App - Acceptance Test Driven Development (ATDD)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project demonstrates Acceptance Test Driven Development (ATDD) methodology for building a simple Todo application.
 
-## Available Scripts
+## Development Cycle
 
-In the project directory, you can run:
+This project follows the ATDD cycle:
 
-### `npm start`
+1. **Write Acceptance Tests**: Define how the application should behave from a user's perspective using Cypress
+2. **Write Unit Tests**: Create Jest tests for individual components and functions
+3. **Implement the App**: Develop the application to satisfy the tests
+4. **Make Tests Green**: Ensure all tests pass
+5. **Refactor**: Improve code quality without changing functionality
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+"Refactor" means improving the code structure, readability, and efficiency without altering its external behavior - keeping all tests passing throughout the process.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Features
 
-### `npm test`
+- Add new tasks
+- Mark tasks as complete
+- Delete tasks
+- Local storage persistence
+- Clean, responsive UI
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+```bash
+cd todo-app
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Running the App
 
-### `npm run eject`
+```bash
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The application will be available at [http://localhost:3000](http://localhost:3000).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Testing
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Jest Tests
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Run unit tests:
 
-## Learn More
+```bash
+npm run ci:test
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Cypress Tests
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Open Cypress test runner:
+
+```bash
+npm run cy:open
+```
+
+## Test Files
+
+- `add.spec.js`: Jest unit tests for component functionality
+- `add.cy.js`: Cypress acceptance tests for end-to-end testing
