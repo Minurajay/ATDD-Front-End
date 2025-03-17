@@ -12,7 +12,6 @@ This project follows the ATDD cycle:
 4. **Make Tests Green**: Ensure all tests pass
 5. **Refactor**: Improve code quality without changing functionality
 
-"Refactor" means improving the code structure, readability, and efficiency without altering its external behavior - keeping all tests passing throughout the process.
 
 ## Features
 
