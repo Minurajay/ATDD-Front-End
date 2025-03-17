@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { act } from 'react'; // Import act from react
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
@@ -16,11 +16,11 @@ describe('Todo App Functionality', () => {
     const todoInput = screen.getByTestId('todo-input');
     const addButton = screen.getByTestId('add-todo-button');
     
-    // Type a todo and add it
-    await userEvent.type(todoInput, 'Buy groceries');
-    await userEvent.click(addButton);
+    await act(async () => {
+      await userEvent.type(todoInput, 'Buy groceries');
+      await userEvent.click(addButton);
+    });
 
-    // Check if the todo item appears in the document
     const todoItem = screen.getByText('Buy groceries');
     expect(todoItem).toBeInTheDocument();
   });
@@ -29,10 +29,10 @@ describe('Todo App Functionality', () => {
     render(<App />);
     const addButton = screen.getByTestId('add-todo-button');
 
-    // Try to add an empty todo
-    await userEvent.click(addButton);
+    await act(async () => {
+      await userEvent.click(addButton);
+    });
 
-    // Ensure no items are added
     const todoItems = screen.queryAllByTestId('todo-item');
     expect(todoItems).toHaveLength(0);
   });
@@ -42,11 +42,11 @@ describe('Todo App Functionality', () => {
     const todoInput = screen.getByTestId('todo-input');
     const addButton = screen.getByTestId('add-todo-button');
 
-    // Add a todo item
-    await userEvent.type(todoInput, 'Learn React');
-    await userEvent.click(addButton);
+    await act(async () => {
+      await userEvent.type(todoInput, 'Learn React');
+      await userEvent.click(addButton);
+    });
 
-    // Check if input is cleared
     expect(todoInput).toHaveValue('');
   });
 });
