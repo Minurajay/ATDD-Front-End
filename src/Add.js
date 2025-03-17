@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 
 export default function Add({ value, onChange, onAdd }) {
   const handleChange = (evt) => {
@@ -12,8 +13,9 @@ export default function Add({ value, onChange, onAdd }) {
   };
 
   return (
-    <div>
+    <div className="input-container">
       <input 
+        className="todo-input"
         data-testid="todo-input" 
         value={value} 
         onChange={handleChange}
@@ -22,6 +24,7 @@ export default function Add({ value, onChange, onAdd }) {
         placeholder="Enter a new todo"
       />
       <button 
+        className="add-button"
         data-testid="add-todo-button"
         onClick={onAdd}
       >
